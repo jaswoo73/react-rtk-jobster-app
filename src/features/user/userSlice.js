@@ -46,15 +46,18 @@ const userSlice = createSlice({
     toggleSidebar: (state) => {
       state.isSidebarOpen = !state.isSidebarOpen;
     },
-    logoutUser: (state) => {
+    logoutUser: (state, { payload }) => {
       state.user = null;
       state.isSidebarOpen = false;
       removeUserFromLocalStorage();
+      if (payload) {
+        toast.success(payload);
+      }
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(registerUser.pending, (state, { payload }) => {
+      .addCase(registerUser.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(registerUser.fulfilled, (state, { payload }) => {
@@ -68,7 +71,7 @@ const userSlice = createSlice({
         state.isLoading = false;
         toast.error(payload);
       })
-      .addCase(loginUser.pending, (state, { payload }) => {
+      .addCase(loginUser.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {

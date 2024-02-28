@@ -3,7 +3,14 @@ import { FormRow, FormRowSelect } from "../../components";
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
 import { toast } from "react-toastify";
 import jobSlice from "../../features/job/jobSlice";
-import { handleChange, clearValues } from "../../features/job/jobSlice";
+import {
+  handleChange,
+  clearValues,
+  createJob,
+  editJob,
+} from "../../features/job/jobSlice";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddJob = () => {
   const {
@@ -18,7 +25,9 @@ const AddJob = () => {
     isEditing,
     editJobId,
   } = useSelector((state) => state.job);
+  const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,6 +35,26 @@ const AddJob = () => {
       toast.warning("please fill out all fields");
       return;
     }
+    if (isEditing) {
+      dispatch(
+        editJob({
+          jobId: editJobId,
+          job: {
+            position,
+            company,
+            jobLocation,
+            jobType,
+            status,
+          },
+        })
+      ).then(() => navigate("/all-jobs"));
+      return;
+    }
+    dispatch(
+      createJob({ position, company, jobLocation, jobType, status })
+    ).then(() => {
+      navigate("/all-jobs");
+    });
   };
 
   const handleJobInput = (e) => {
@@ -34,6 +63,16 @@ const AddJob = () => {
     dispatch(handleChange({ name, value }));
   };
 
+  useEffect(() => {
+    if (!isEditing) {
+      dispatch(
+        handleChange({
+          name: "jobLocation",
+          value: user.location,
+        })
+      );
+    }
+  }, []);
   return (
     <Wrapper>
       <form className="form" onSubmit={handleSubmit}>
@@ -90,7 +129,7 @@ const AddJob = () => {
               onClick={handleSubmit}
               disabled={isLoading}
             >
-              submit
+              {isEditing ? "save changes" : "submit"}
             </button>
           </div>
         </div>

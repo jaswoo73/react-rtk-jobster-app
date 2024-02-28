@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Wrapper = styled.article`
   background: var(--white);
@@ -26,7 +26,7 @@ const Wrapper = styled.article`
     border-radius: var(--borderRadius);
     font-size: 1.5rem;
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: var(--white);
     margin-right: 2rem;
   }
