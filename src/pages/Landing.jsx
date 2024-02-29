@@ -16,10 +16,16 @@ const Landing = () => {
             Job <span>Tracking</span> App
           </h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
-            laborum animi ducimus natus repudiandae harum, voluptates alias
-            nulla ea quis aut ratione illo aliquam nemo praesentium consectetur
-            officia.
+            Welcome to Jobster – Transform your job search experience and
+            discover streamlined job opportunities organization on our landing
+            page. 🚀 Effortlessly record and categorize job prospects by
+            location, job type, and status.
+            <br />
+            <br />
+            Upon login, Jobster unveils a user-friendly platform with a dynamic
+            stat overview. Track pending, scheduled interviews, and declined
+            prospects. Visualize your journey with insightful charts. Simplify
+            job hunting with Jobster – where organization meets efficiency! 💼✨
           </p>
           <Link to="/register" className="btn btn-hero">
             Login/Register

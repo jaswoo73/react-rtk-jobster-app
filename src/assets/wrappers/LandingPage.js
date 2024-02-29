@@ -23,6 +23,7 @@ const Wrapper = styled.main`
   }
   p {
     color: var(--grey-600);
+    text-align: justify;
   }
   .main-img {
     display: none;

@@ -23,7 +23,7 @@ const Register = () => {
     if (user) {
       setTimeout(() => {
         navigate("/");
-      }, 2000);
+      }, 1500);
     }
   }, [user]);
 
@@ -62,6 +62,7 @@ const Register = () => {
             name="name"
             value={values.name}
             handleChange={handleChange}
+            autocomplete="name"
           />
         )}
         {/* EMAIL FIELD */}
@@ -70,6 +71,7 @@ const Register = () => {
           name="email"
           value={values.email}
           handleChange={handleChange}
+          autocomplete="email"
         />
         {/* NAME FIELD */}
         <FormRow
@@ -79,7 +81,18 @@ const Register = () => {
           handleChange={handleChange}
         />
         <button type="submit" className="btn btn-block" disabled={isLoading}>
-          {isLoading ? "submitting..." : "submit"}
+          {isLoading ? "loading..." : "submit"}
+        </button>
+        <button
+          className="btn btn-block btn-hipster"
+          disabled={isLoading}
+          onClick={() => {
+            dispatch(
+              loginUser({ email: "testUser@test.com", password: "secret" })
+            );
+          }}
+        >
+          {isLoading ? "loading..." : "demo app"}
         </button>
         <p>
           {values.isMember ? "Not a member yet?" : "Already a member?"}

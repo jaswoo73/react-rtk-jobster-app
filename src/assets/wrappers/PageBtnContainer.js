@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Wrapper = styled.section`
   height: 6rem;
@@ -50,5 +50,12 @@ const Wrapper = styled.section`
     background: var(--primary-500);
     color: var(--white);
   }
-`
-export default Wrapper
+  .prev-btn:disabled,
+  .next-btn:disabled {
+    opacity: 0.4;
+    color: var(--grey-500);
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+`;
+export default Wrapper;
